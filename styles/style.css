@@ -2,6 +2,11 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    transition: all 0.3s ease-in-out;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
 }
 
 
@@ -80,5 +85,14 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.gameBoard-grid div{
+    width: 100px;
+    height: 100px;
+}
+
+.gameBoard-grid div:hover{
+    background-color: #ccc;
 }
 

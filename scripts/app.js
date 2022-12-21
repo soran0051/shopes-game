@@ -3,70 +3,102 @@ var gridDiv = document.querySelectorAll("div.gameboard-grid");
 var scoreShow = document.querySelector("h3.header-scores");
 var timerShow = document.querySelector("h3.header-timer");
 var startOverlay = document.querySelector("div.start-modal");
+var i = 0;
+var shapeMakerTimeOut;
+var shapeMakeInterval;
+var shapeRandomRenderTimeout;
+var a = 59;
+function score() {
+  scoreShow.innerHTML = "Score " + " : " + i;
+}
 
-// function makeShape(){
-//     setInterval(()=>{
-//         var a = Math.floor((Math.random()*13))
-//         setTimeout(()=>{
-//             gridDiv[a].innerHTML= "hello"
-//         },2000)
-//     gridDiv[a].innerHTML = ""
-//     },1000)
-// }
 
-// var  shape
-// function shape(){
-
-//     shapeMaker();
-// }
 
 function shapeMaker() {
-  setInterval(function () {
+    shapeMakeInterval = setInterval(function () {
     var divRandom = Math.floor(Math.random() * 12);
     var shapeNumber = Math.floor(Math.random() * 4);
-    var shape = document.createElement("div")
-    setTimeout(function(){
-        if(gridDiv[divRandom].innerHTML=""){
-            switch (shapeNumber) {
-                case 0:
-                    {
-                        shape.classList.add("circle")
-                    }
-                    break;
-            
-                default:
-                    break;
+    var shape = document.createElement("div");
+    shape.style.scale = 0;
+    console.log(shapeNumber);
+    shapeRandomRenderTimeout = setTimeout(function () {
+      if (gridDiv[divRandom].innerHTML == "") {
+        console.log("worked");
+        switch (shapeNumber) {
+          case 0:
+            {
+              shape.classList.add("circle");
+              shape.setAttribute("score", 1);
+              shape.style.scale = 1;
+              gridDiv[divRandom].appendChild(shape);
             }
+            break;
+          case 1:
+            {
+              shape.classList.add("star");
+              shape.setAttribute("score", 1);
+              gridDiv[divRandom].appendChild(shape);
+              shape.style.scale = 1;
+            }
+            break;
+          case 2:
+            {
+              shape.classList.add("tringle");
+              shape.setAttribute("score", 1);
+              gridDiv[divRandom].appendChild(shape);
+              shape.style.scale = 1;
+            }
+            break;
+          case 3:
+            {
+              shape.classList.add("arrow");
+              shape.setAttribute("score", 1);
+              gridDiv[divRandom].appendChild(shape);
+              shape.style.scale = 1;
+            }
+            break;
         }
-    })
-//     setTimeout(function () {
-//       if (shapeNumber == 0 && gridDiv[divRandom].innerHTML == "") {
-//         var shape = document.createElement("div");
-//         shape.classList.add("circle");
-//         gridDiv[divRandom].appendChild(shape);
-//         console.log(shape);
-//       } else if (shapeNumber == 1 && gridDiv[divRandom].innerHTML == "") {
-//         var shape = document.createElement("div");
-//         shape.classList.add("tringle");
-//         console.log(shape);
-//         gridDiv[divRandom].appendChild(shape);
-//       } else if (shapeNumber == 2 && gridDiv[divRandom].innerHTML == "") {
-//         var shape = document.createElement("div");
-//         shape.classList.add("arrow");
-//         console.log(shape);
-//         gridDiv[divRandom].appendChild(shape);
-//       } else if (shapeNumber == 3 && gridDiv[divRandom].innerHTML == "") {
-//         var shape = document.createElement("div");
-//         shape.classList.add("star");
-//         console.log(shape);
-//         gridDiv[divRandom].appendChild(shape);
-//       }
-//     }, 1000);
-//     gridDiv[divRandom].innerHTML = "";
+      }
+      shape.addEventListener("click", function () {
+        i += Number(shape.getAttribute("score"));
+        score();
+        shape.style.scale = 0;
+      });
+      console.log(i);
+    }, 1000);
+    gridDiv[divRandom].innerHTML = "";
   }, 1000);
 }
 
 startBtn.addEventListener("click", () => {
+    a++
   startOverlay.style.scale = 0;
-  shapeMaker();
+  timer();
+  shapeMakerTimeOut= setTimeout(shapeMaker(),6000);
 });
+
+var timer=()=>{
+    var timerCounter = setInterval(()=>{
+        if(a==0){
+            close();
+            clearInterval(timerCounter)
+            alert("time is over")
+            a=59;
+
+        }else{
+            a--;
+            timerShow.innerHTML = "Timer " + " : " + a;
+        }
+       console.log("timer : " + a)
+    },1500)
+}
+
+function close(){
+    gridDiv.forEach(function(e){
+        e.innerHTML=""
+    })
+    clearTimeout(shapeRandomRenderTimeout)
+    clearInterval(shapeMakeInterval)
+    clearTimeout(shapeMakerTimeOut);
+    startOverlay.style.scale=1;
+}
