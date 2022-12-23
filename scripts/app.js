@@ -3,24 +3,48 @@ var gridDiv = document.querySelectorAll("div.gameboard-grid");
 var scoreShow = document.querySelector("h3.header-scores");
 var timerShow = document.querySelector("h3.header-timer");
 var startOverlay = document.querySelector("div.start-modal");
-var i = 0;
+var userNameInput = document.querySelector("input.userNameInput")
+var scoresContainer = document.querySelector("div.scores-container")
 var shapeMakerTimeOut;
 var shapeMakeInterval;
 var shapeRandomRenderTimeout;
-var a = 59;
-function score() {
-  scoreShow.innerHTML = "Score " + " : " + i;
-}
+var timerSecondCounter = 59;
+var scoreCounter = 0;
+var userScores=[];
+var roundCounter = 0;
 
 
+startBtn.addEventListener("click", () => {
+ if(userNameInput.value==""){
+  alert("userName cant be emptey")
+ }else{
+  startOverlay.style.scale = 0;
+  timer();
+  shapeMakerTimeOut = setTimeout(shapeMaker(), 6000);
+ }
+});
 
-function shapeMaker() {
-    shapeMakeInterval = setInterval(function () {
+var timer = () => {
+  var timerCounter = setInterval(() => {
+    if (timerSecondCounter == 0) {
+      close();
+      clearInterval(timerCounter); 
+      alert("time is over");
+    } else {
+      timerSecondCounter--;
+      timerShow.innerHTML = "Timer " + " : " + timerSecondCounter;
+    }
+    console.log("timer : " + timerSecondCounter);
+  }, 1000);
+};
+
+var shapeMaker=()=> {
+  shapeMakeInterval = setInterval(function () {
     var divRandom = Math.floor(Math.random() * 12);
     var shapeNumber = Math.floor(Math.random() * 4);
     var shape = document.createElement("div");
     shape.style.scale = 0;
-    console.log(shapeNumber);
+
     shapeRandomRenderTimeout = setTimeout(function () {
       if (gridDiv[divRandom].innerHTML == "") {
         console.log("worked");
@@ -60,45 +84,53 @@ function shapeMaker() {
         }
       }
       shape.addEventListener("click", function () {
-        i += Number(shape.getAttribute("score"));
+        scoreCounter += Number(shape.getAttribute("score"));
         score();
         shape.style.scale = 0;
       });
-      console.log(i);
-    }, 1000);
+    }, 500);
     gridDiv[divRandom].innerHTML = "";
-  }, 1000);
+  }, 500);
 }
 
-startBtn.addEventListener("click", () => {
-    a++
-  startOverlay.style.scale = 0;
-  timer();
-  shapeMakerTimeOut= setTimeout(shapeMaker(),6000);
-});
-
-var timer=()=>{
-    var timerCounter = setInterval(()=>{
-        if(a==0){
-            close();
-            clearInterval(timerCounter)
-            alert("time is over")
-            a=59;
-
-        }else{
-            a--;
-            timerShow.innerHTML = "Timer " + " : " + a;
-        }
-       console.log("timer : " + a)
-    },1500)
+var score=()=> {
+  scoreShow.innerHTML = "Score " + " : " + scoreCounter; 
 }
 
-function close(){
-    gridDiv.forEach(function(e){
-        e.innerHTML=""
-    })
-    clearTimeout(shapeRandomRenderTimeout)
-    clearInterval(shapeMakeInterval)
-    clearTimeout(shapeMakerTimeOut);
-    startOverlay.style.scale=1;
+
+var close=()=> {
+  gridDiv.forEach(function (e) {
+    e.innerHTML = "";
+  });
+  scoreInit()
+  timerSecondCounter = 59;
+  scoreShow.innerHTML = "";
+  clearTimeout(shapeRandomRenderTimeout);
+  clearInterval(shapeMakeInterval);
+  clearTimeout(shapeMakerTimeOut);
+  startOverlay.style.scale = 1;
+}
+
+var scoreInit = ()=>{
+  userResult = {
+    userName : userNameInput.value,
+    Score :scoreCounter
+  }
+  scoreCounter=0;
+  userNameInput.value = "";
+  userScores.push(userResult);
+  domScore();
+}
+
+var domScore = ()=>{
+  var scoreBox= document.createElement("div")
+  scoreBox.classList.add("score")
+  var userNameContainer = document.createElement("h2")
+  var userScoreContainer = document.createElement("h2")
+  userNameContainer.innerHTML = userScores[roundCounter].userName;
+  userScoreContainer.innerHTML = userScores[roundCounter].Score;
+  scoreBox.appendChild(userNameContainer)
+  scoreBox.appendChild(userScoreContainer)
+  scoresContainer.appendChild(scoreBox)
+  roundCounter++;
 }

@@ -2,19 +2,19 @@
 
 .circle{
     clip-path: circle(50% at 50% 50%);
-    background-color: red;
+    background-color: #CB1C8D;
     cursor:pointer;
 }
 
 .tringle{
     clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-    background-color: blue;
+    background-color: #C0DEFF;
     cursor:pointer;
 }
 
 .star{
     clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
-    background-color: yellow;
+    background-color: #F1F7B5;
     cursor:pointer;
 }
 

@@ -9,30 +9,41 @@
 </head>
 <body>
     <div class="start-modal">
-        <button type="button" class="startBtn">Start</button>
+        <div class="startModalForm">
+            <input type="text" placeholder="username" class="userNameInput">
+            <button type="button" class="startBtn">Start</button>
+        </div>
     </div>
     <div class="container">
         <!-- main game boars container -->
-        <div class="gameBoard">
-            <div class="gameBoard-header">
-                <h3 class="header-timer">timer</h3>
-                <h3 class="header-scores">score</h3>
+        <div class="row">
+            <div class="gameBoard">
+                <div class="gameBoard-header">
+                    <h3 class="header-timer">
+                        Timer
+                    </h3>
+                    <h3 class="header-scores">
+                        Score
+                    </h3>
+                </div>
+                <div class="gameBoard-main">
+                    <div class="gameboard-grid"></div>
+                    <div class="gameboard-grid"></div>
+                    <div class="gameboard-grid"></div>
+                    <div class="gameboard-grid"></div>
+                    <div class="gameboard-grid"></div>
+                    <div class="gameboard-grid"></div>
+                    <div class="gameboard-grid"></div>
+                    <div class="gameboard-grid"></div>
+                    <div class="gameboard-grid"></div>
+                    <div class="gameboard-grid"></div>
+                    <div class="gameboard-grid"></div>
+                    <div class="gameboard-grid"></div>
+                </div>
             </div>
-            <div class="gameBoard-main">
-                <div class="gameboard-grid"></div>
-                <div class="gameboard-grid"></div>
-                <div class="gameboard-grid"></div>
-                <div class="gameboard-grid"></div>
-                <div class="gameboard-grid"></div>
-                <div class="gameboard-grid"></div>
-                <div class="gameboard-grid"></div>
-                <div class="gameboard-grid"></div>
-                <div class="gameboard-grid"></div>
-                <div class="gameboard-grid"></div>
-                <div class="gameboard-grid"></div>
-                <div class="gameboard-grid"></div>
+            <div class="scores-container">
+                <h1>Scores</h1>
             </div>
-            <div class="gameBoard-footer"></div>
         </div>
     </div>
     <script src="scripts/app.js"></script>

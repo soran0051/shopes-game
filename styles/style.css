@@ -1,98 +1,206 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    transition: all 0.3s ease-in-out;
-    -webkit-transition: all 0.3s ease-in-out;
-    -moz-transition: all 0.3s ease-in-out;
-    -ms-transition: all 0.3s ease-in-out;
-    -o-transition: all 0.3s ease-in-out;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  font-family: cursive !important;
+  color: #f9f9f9;
 }
 
-
+.row {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end !important;
+}
 
 /* ************************************ */
 
 /* start modal */
-body{
-    position: relative;
+body {
+  position: relative;
+  background: url("../images/والپیپر-گوشی-سیاه-رنگ.jpg");
+  z-index: 1;
 }
-.start-modal{
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 2;
+
+body::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  content: "";
+  background: linear-gradient(to right, #000000, #434343);
+  opacity: 0.8;
+  z-index: -1;
+}
+
+.start-modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.8);
+  transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+}
+
+.startModalForm{
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgba(0, 0, 0, 0.8);
-    transition: all .3s ease-in-out;
-    -webkit-transition: all .3s ease-in-out;
-    -moz-transition: all .3s ease-in-out;
-    -ms-transition: all .3s ease-in-out;
-    -o-transition: all .3s ease-in-out;
+    background-color: #fff;
+    border-radius: .3rem;
+    -webkit-border-radius: .3rem;
+    -moz-border-radius: .3rem;
+    -ms-border-radius: .3rem;
+    -o-border-radius: .3rem;
+    padding: 0.1rem;
 }
-.startBtn{
-    padding: 1rem 2rem;
-    color: #fff;
-    background-color: rgb(29, 180, 112);
+
+.startModalForm input{
     border: none;
-    cursor: pointer;
-    border-radius: 0.2rem;
-    -webkit-border-radius: 0.2rem;
-    -moz-border-radius: 0.2rem;
-    -ms-border-radius: 0.2rem;
-    -o-border-radius: 0.2rem;
+    padding: 1rem 0.3rem;
+    color: #000;
     font-size: 1.5rem;
 }
-.container{
-    max-width: 98%;
-    /* border: 1px solid red; */
-    margin: 0 auto;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+
+
+.startModalForm input:focus{
+    outline: none;
 }
 
-.gameBoard{
-    width: 50%;
-    border: 1px solid blue;
-    margin: 0 auto;
-    padding: 0.5rem;
+.startBtn {
+  padding: 1rem 2rem;
+  color: #fff;
+  background-color: rgb(29, 180, 112);
+  border: none;
+  cursor: pointer;
+  border-radius: 0.2rem;
+  -webkit-border-radius: 0.2rem;
+  -moz-border-radius: 0.2rem;
+  -ms-border-radius: 0.2rem;
+  -o-border-radius: 0.2rem;
+  font-size: 1.5rem;
 }
 
-.gameBoard-header{
-    border: 1px solid red;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.container {
+  max-width: 98%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  /* background-image: url('../images/Screenshot(21).png'); */
 }
 
-.gameBoard-main{
-    border: 1px solid black;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
+.gameBoard {
+  border: 1px solid rgb(49, 48, 48);
+  flex-basis: 50%;
+  margin: 0 auto;
+  padding: 0.5rem;
+  max-height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-.gameBoard-grid{
-    border: 1px solid yellow;
-    flex-basis: calc(100% / 3);
-    height: 20vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.gameBoard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.gameBoard-grid div{
-    width: 100px;
-    height: 100px;
+.gameBoard-main {
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
-.gameBoard-grid div:hover{
-    background-color: #ccc;
+.gameBoard-grid {
+  /* border: 1px solid rgb(49, 48, 48); */
+  flex-basis: calc(100% / 3);
+  height: 20vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.gameBoard-grid div {
+  width: 80px;
+  height: 80px;
+}
+
+.animation{
+    animation: shapeAnim linear 2s 1s alternate;
+    -webkit-animation: shapeAnim linear 2s 1s alternate;
+}
+
+.gameBoard-grid div:hover {
+  background-color: #F3EFE0;
+}
+
+@keyframes shapeAnim{
+    0%{
+        scale: 0;
+    }
+    25%{
+        scale: .25;
+    }
+    50%{
+       scale: .5;
+    }
+    75%{
+        scale: .75;
+    }
+    100%{
+        scale: 1;
+    }
+}
+
+.scores-container {
+  border: 1px solid red;
+  flex-basis: 30%;
+  max-height: 100%;
+  padding: 0.6rem;
+}
+
+.scores-container h1 {
+  text-align: center;
+  padding-bottom: 1.2rem;
+  border-bottom: 4px solid #ccc;
+}
+
+.score {
+  text-align: left;
+  padding: 0.5rem;
+  border-bottom: 1px solid #ccc;
+}
+
+.score h2 {
+  margin: 0.5rem 0;
+}
+
+.score h2::before {
+  content: "username : ";
+}
+
+.score h2:nth-child(2)::before {
+  content: "Score : ";
 }
 
