@@ -8,7 +8,7 @@ var scoresContainer = document.querySelector("div.scores-container")
 var shapeMakerTimeOut;
 var shapeMakeInterval;
 var shapeRandomRenderTimeout;
-var timerSecondCounter = 59;
+var timerSecondCounter = 29;
 var scoreCounter = 0;
 var userScores=[];
 var roundCounter = 0;
@@ -43,42 +43,36 @@ var shapeMaker=()=> {
     var divRandom = Math.floor(Math.random() * 12);
     var shapeNumber = Math.floor(Math.random() * 4);
     var shape = document.createElement("div");
-    shape.style.scale = 0;
-
     shapeRandomRenderTimeout = setTimeout(function () {
       if (gridDiv[divRandom].innerHTML == "") {
         console.log("worked");
         switch (shapeNumber) {
           case 0:
             {
-              shape.classList.add("circle");
               shape.setAttribute("score", 1);
-              shape.style.scale = 1;
               gridDiv[divRandom].appendChild(shape);
+              shape.classList.add("circle");
             }
             break;
           case 1:
             {
-              shape.classList.add("star");
               shape.setAttribute("score", 1);
               gridDiv[divRandom].appendChild(shape);
-              shape.style.scale = 1;
+              shape.classList.add("star");
             }
             break;
           case 2:
             {
-              shape.classList.add("tringle");
               shape.setAttribute("score", 1);
               gridDiv[divRandom].appendChild(shape);
-              shape.style.scale = 1;
+              shape.classList.add("tringle");
             }
             break;
           case 3:
             {
-              shape.classList.add("arrow");
               shape.setAttribute("score", 1);
               gridDiv[divRandom].appendChild(shape);
-              shape.style.scale = 1;
+              shape.classList.add("arrow");
             }
             break;
         }
@@ -88,9 +82,9 @@ var shapeMaker=()=> {
         score();
         shape.style.scale = 0;
       });
-    }, 500);
+    }, 250);
     gridDiv[divRandom].innerHTML = "";
-  }, 500);
+  }, 250);
 }
 
 var score=()=> {
@@ -103,7 +97,7 @@ var close=()=> {
     e.innerHTML = "";
   });
   scoreInit()
-  timerSecondCounter = 59;
+  timerSecondCounter = 29;
   scoreShow.innerHTML = "";
   clearTimeout(shapeRandomRenderTimeout);
   clearInterval(shapeMakeInterval);

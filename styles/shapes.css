@@ -19,7 +19,7 @@
 }
 
 .arrow{
-    clip-path: polygon(40% 0%, 40% 20%, 100% 20%, 100% 80%, 40% 80%, 40% 100%, 0% 50%);
-    background-color: aqua;
+    clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+    background-color: #F49D1A;
     cursor:pointer;
 }
